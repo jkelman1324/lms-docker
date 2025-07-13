@@ -1,0 +1,9 @@
+[
+    {
+        "email": "course-admin@test.edulinq.org",
+        "password": "course-admin",
+        "name-first": "",
+        "name-last": "course-admin",
+        "server-role": "user"
+    }
+]

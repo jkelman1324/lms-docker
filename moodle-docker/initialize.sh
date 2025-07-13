@@ -1,9 +1,6 @@
 #!/bin/bash
 
-MOODLE_DB_NAME=${MOODLE_DB_NAME:-moodle}
-MOODLE_DB_USER=${MOODLE_DB_USER:-moodleuser}
-MOODLE_DB_PASSWORD=${MOODLE_DB_PASSWORD:-moodlepass}
-MOODLE_ADMIN_PASSWORD=${MOODLE_ADMIN_PASSWORD:-admin123}
+set -e
 
 # Start MariaDB manually in background
 mysqld_safe &
@@ -42,8 +39,12 @@ if [ ! -f /var/www/html/moodle/config.php ]; then
         --agree-license
 fi
 
-echo "username,password,firstname,lastname,email" >/tmp/user.csv
-echo "testuser,TestPass123!,Test,User,testuser@example.com" >>/tmp/user.csv
+# TEST
+# echo "username,password,firstname,lastname,email" > /tmp/user.csv
+# echo "testuser,TestPass123!,Test,User,testuser@example.com" >> /tmp/user.csv
+
+# Call script to load test users.
+./load-test-data.py > /tmp/user.csv
 
 sudo -u www-data php /var/www/html/moodle/admin/tool/uploaduser/cli/uploaduser.php --file=/tmp/user.csv --mode=addnew
 
