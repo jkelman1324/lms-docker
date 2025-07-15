@@ -4,7 +4,7 @@ import json
 
 ATTRIBUTES = ["username", "password", "firstname", "lastname", "email"]
 
-with open("users.json", "r") as file:
+with open("data/users.json", "r") as file:
     users = json.load(file)
 
 print(",".join(ATTRIBUTES))

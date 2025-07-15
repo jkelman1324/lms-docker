@@ -7,16 +7,18 @@ ENV MOODLE_ADMIN_PASSWORD=admin123
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Copy scripts
+COPY scripts /scripts
+RUN chmod +x /scripts/*.sh
+RUN chmod +x /scripts/load-test-data.py
+
 # Install everything
-COPY update.sh /update.sh
-RUN chmod +x /update.sh
-RUN /update.sh
+RUN /scripts/update.sh
 
 WORKDIR /var/www/html
 
-# Get Moodle
-RUN git clone https://github.com/moodle/moodle.git && \
-    cd moodle && git checkout v5.0.1
+# Clone moodle repo
+RUN /scripts/moodle.sh
 
 # Setup permissions
 RUN mkdir -p /var/www/moodledata && \
@@ -28,19 +30,12 @@ COPY moodle-custom.ini /etc/php/8.3/apache2/conf.d/99-moodle.ini
 COPY moodle-custom.ini /etc/php/8.3/cli/conf.d/99-moodle.ini
 
 # Copy test data
-COPY load-test-data.py /
-COPY users.json /
-RUN chmod +x /load-test-data.py
+COPY data /data
 
 # Copy start script
-COPY initialize.sh /initialize.sh
-RUN chmod +x /initialize.sh
 WORKDIR /
-RUN /initialize.sh
+RUN /scripts/initialize.sh
 WORKDIR /var/www/html
 
-COPY start.sh /start.sh
-RUN chmod +x /start.sh
-
 EXPOSE 80
-CMD ["/start.sh"]
+CMD ["/scripts/start.sh"]

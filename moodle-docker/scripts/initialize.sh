@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -euo pipefail
 
 # Start MariaDB manually in background
 mysqld_safe &
@@ -19,7 +19,7 @@ GRANT ALL PRIVILEGES ON $MOODLE_DB_NAME.* TO '$MOODLE_DB_USER'@'localhost';
 FLUSH PRIVILEGES;
 MYSQL_SCRIPT
 
-# Install Moodle if not already installed
+# Install Moodle
 if [ ! -f /var/www/html/moodle/config.php ]; then
     sudo -u www-data /usr/bin/php /var/www/html/moodle/admin/cli/install.php \
         --non-interactive \
@@ -44,7 +44,7 @@ fi
 # echo "testuser,TestPass123!,Test,User,testuser@example.com" >> /tmp/user.csv
 
 # Call script to load test users.
-./load-test-data.py > /tmp/user.csv
+./scripts/load-test-data.py > /tmp/user.csv
 
 sudo -u www-data php /var/www/html/moodle/admin/tool/uploaduser/cli/uploaduser.php --file=/tmp/user.csv --mode=addnew
 
