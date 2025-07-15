@@ -1,8 +1,8 @@
 #!/bin/bash
 
-set -euo pipefail
+set -e
 
-# Start MariaDB manually in background
+# Start MariaDB manually in background.
 mysqld_safe &
 
 # Wait for MariaDB to be ready
@@ -20,31 +20,25 @@ FLUSH PRIVILEGES;
 MYSQL_SCRIPT
 
 # Install Moodle
-if [ ! -f /var/www/html/moodle/config.php ]; then
-    sudo -u www-data /usr/bin/php /var/www/html/moodle/admin/cli/install.php \
-        --non-interactive \
-        --lang=en \
-        --wwwroot=http://localhost:8080/moodle \
-        --dataroot=/var/www/moodledata \
-        --dbtype=mariadb \
-        --dbhost=localhost \
-        --dbname=$MOODLE_DB_NAME \
-        --dbuser=$MOODLE_DB_USER \
-        --dbpass=$MOODLE_DB_PASSWORD \
-        --fullname="My Moodle Site" \
-        --shortname="Moodle" \
-        --adminuser=admin \
-        --adminpass=$MOODLE_ADMIN_PASSWORD \
-        --adminemail=admin@example.com \
-        --agree-license
-fi
-
-# TEST
-# echo "username,password,firstname,lastname,email" > /tmp/user.csv
-# echo "testuser,TestPass123!,Test,User,testuser@example.com" >> /tmp/user.csv
+sudo -u www-data /usr/bin/php /var/www/html/moodle/admin/cli/install.php \
+    --non-interactive \
+    --lang=en \
+    --wwwroot=http://localhost:8080/moodle \
+    --dataroot=/var/www/moodledata \
+    --dbtype=mariadb \
+    --dbhost=localhost \
+    --dbname=$MOODLE_DB_NAME \
+    --dbuser=$MOODLE_DB_USER \
+    --dbpass=$MOODLE_DB_PASSWORD \
+    --fullname="My Moodle Site" \
+    --shortname="Moodle" \
+    --adminuser=$MOODLE_ADMIN_USER \
+    --adminpass=$MOODLE_ADMIN_PASSWORD \
+    --adminemail=$MOODLE_ADMIN_EMAIL \
+    --agree-license
 
 # Call script to load test users.
-./scripts/load-test-data.py > /tmp/user.csv
+/scripts/load-test-data.py > /tmp/user.csv
 
 sudo -u www-data php /var/www/html/moodle/admin/tool/uploaduser/cli/uploaduser.php --file=/tmp/user.csv --mode=addnew
 

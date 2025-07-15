@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 
 import json
+import os
 
 ATTRIBUTES = ["username", "password", "firstname", "lastname", "email"]
+THIS_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
+USERS_PATH = os.path.join(THIS_DIR, "..", "data", "users.json")
 
-with open("data/users.json", "r") as file:
+with open(USERS_PATH, "r") as file:
     users = json.load(file)
 
 print(",".join(ATTRIBUTES))
