@@ -37,15 +37,15 @@ sudo -u www-data /usr/bin/php /var/www/html/moodle/admin/cli/install.php \
     --adminemail=$MOODLE_ADMIN_EMAIL \
     --agree-license
 
-# Call script to load test users.
-/scripts/load-test-users.py > /tmp/user.csv
-
-sudo -u www-data php /var/www/html/moodle/admin/tool/uploaduser/cli/uploaduser.php --file=/tmp/user.csv --mode=addnew
-
 # Call script to load test courses.
 /scripts/load-test-courses.py > /tmp/course.csv
 
 sudo -u www-data php /var/www/html/moodle/admin/tool/uploadcourse/cli/uploadcourse.php --file=/tmp/course.csv --mode=createnew
+
+# Call script to load test users.
+/scripts/load-test-users.py > /tmp/user.csv
+
+sudo -u www-data php /var/www/html/moodle/admin/tool/uploaduser/cli/uploaduser.php --file=/tmp/user.csv --mode=addnew
 
 # Kill MariaDB
 mysqladmin shutdown

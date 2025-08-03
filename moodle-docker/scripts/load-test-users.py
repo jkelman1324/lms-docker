@@ -3,7 +3,7 @@
 import json
 import os
 
-ATTRIBUTES = ["username", "password", "firstname", "lastname", "email"]
+ATTRIBUTES = ["username", "password", "firstname", "lastname", "email", "course1", "type1"]
 THIS_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
 USERS_PATH = os.path.join(THIS_DIR, "..", "data", "users.json")
 
@@ -18,7 +18,9 @@ for user in users:
         user["password"],
         user["name-last"],
         user["name-last"],
-        user["email"]
+        user["email"],
+        "course101",
+        "1"
     ]
 
     print(",".join(row))

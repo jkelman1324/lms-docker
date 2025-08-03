@@ -3,7 +3,7 @@
 import json
 import os
 
-ATTRIBUTES = ["shortname", "fullname", "category"]
+ATTRIBUTES = ["shortname", "fullname", "category", "enrolment_1"]
 THIS_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
 COURSES_PATH = os.path.join(THIS_DIR, "..", "data", "courses.json")
 
@@ -16,7 +16,8 @@ for course in courses:
     row = [
         course["shortname"],
         course["fullname"],
-        course["category"]
+        "1",
+        "manual"
     ]
 
     print(",".join(row))

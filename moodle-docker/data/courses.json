@@ -1,11 +1,6 @@
 [
     {
         "shortname": "course101",
-        "fullname": "Course 101",
-        "category": "1",
-        "summary": "Test summary.",
-        "lms": {
-            "type": "moodle"
-        }
+        "fullname": "Course 101"
     }
 ]

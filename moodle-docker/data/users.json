@@ -5,5 +5,33 @@
         "name-first": "",
         "name-last": "course-admin",
         "server-role": "user"
+    },
+    {
+        "email": "course-grader@test.edulinq.org",
+        "password": "course-grader",
+        "name-first": "",
+        "name-last": "course-grader",
+        "server-role": "user"
+    },
+    {
+        "email": "course-other@test.edulinq.org",
+        "password": "course-other",
+        "name-first": "",
+        "name-last": "course-other",
+        "server-role": "user"
+    },
+    {
+        "email": "course-owner@test.edulinq.org",
+        "password": "course-owner",
+        "name-first": "",
+        "name-last": "course-owner",
+        "server-role": "user"
+    },
+    {
+        "email": "course-student@test.edulinq.org",
+        "password": "course-student",
+        "name-first": "",
+        "name-last": "course-student",
+        "server-role": "user"
     }
 ]
