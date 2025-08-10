@@ -4,34 +4,74 @@
         "password": "course-admin",
         "name-first": "",
         "name-last": "course-admin",
-        "server-role": "user"
+        "server-role": "user",
+        "course-info": {
+            "course-languages": {
+                "role": "admin"
+            },
+            "course101": {
+                "role": "admin"
+            }
+        }
     },
     {
         "email": "course-grader@test.edulinq.org",
         "password": "course-grader",
         "name-first": "",
         "name-last": "course-grader",
-        "server-role": "user"
+        "server-role": "user",
+        "course-info": {
+            "course-languages": {
+                "role": "grader"
+            },
+            "course101": {
+                "role": "grader"
+            }
+        }
     },
     {
         "email": "course-other@test.edulinq.org",
         "password": "course-other",
         "name-first": "",
         "name-last": "course-other",
-        "server-role": "user"
+        "server-role": "user",
+        "course-info": {
+            "course-languages": {
+                "role": "other"
+            },
+            "course101": {
+                "role": "other"
+            }
+        }
     },
     {
         "email": "course-owner@test.edulinq.org",
         "password": "course-owner",
         "name-first": "",
         "name-last": "course-owner",
-        "server-role": "user"
+        "server-role": "user",
+        "course-info": {
+            "course-languages": {
+                "role": "owner"
+            },
+            "course101": {
+                "role": "owner"
+            }
+        }
     },
     {
         "email": "course-student@test.edulinq.org",
         "password": "course-student",
         "name-first": "",
         "name-last": "course-student",
-        "server-role": "user"
+        "server-role": "user",
+        "course-info": {
+            "course-languages": {
+                "role": "student"
+            },
+            "course101": {
+                "role": "student"
+            }
+        }
     }
 ]

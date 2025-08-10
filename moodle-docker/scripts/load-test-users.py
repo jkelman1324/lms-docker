@@ -3,9 +3,16 @@
 import json
 import os
 
-ATTRIBUTES = ["username", "password", "firstname", "lastname", "email", "course1", "type1"]
+ATTRIBUTES = ["username", "password", "firstname", "lastname", "email", "course1", "role1"]
 THIS_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
 USERS_PATH = os.path.join(THIS_DIR, "..", "data", "users.json")
+ROLE_MAP = {
+    "admin": "editingteacher",
+    "grader": "teacher",
+    "other": "guest",
+    "owner": "manager",
+    "student": "student"
+}
 
 with open(USERS_PATH, "r") as file:
     users = json.load(file)
@@ -20,7 +27,7 @@ for user in users:
         user["name-last"],
         user["email"],
         "course101",
-        "1"
+        ROLE_MAP[user["course-info"]["course101"]["role"]]
     ]
 
     print(",".join(row))
